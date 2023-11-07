@@ -31,9 +31,9 @@ class UrlFormatter
                 }
                 $query = http_build_query($query);
                 $parse['query'] = $query;
+                $url = $this->build_url($parse);
             }
         }
-        $url = $this->build_url($parse);
         return $url;
     }
 

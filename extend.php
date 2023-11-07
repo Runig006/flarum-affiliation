@@ -10,7 +10,8 @@ return [
     (new Extend\Locales(__DIR__ . '/locale')),
 
     (new Extend\Frontend('admin'))
-        ->js(__DIR__ . '/js/dist/admin.js'),
+        ->js(__DIR__ . '/js/dist/admin.js')
+        ->css(__DIR__ . '/less/Admin.less'),
 
     (new Extend\Formatter())
         ->render(UrlFormatter::class),
