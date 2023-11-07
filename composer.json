@@ -1,0 +1,29 @@
+{
+  "name": "runig006/flarum-affiliation",
+  "description": "Add your affiliation tags to any url",
+  "version": "1.0.0",
+  "type": "flarum-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alex Osendi García",
+      "email": "alexcomputer14@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Runig006\\FlarumAffiliation\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "Affiliation",
+      "category": "feature",
+      "icon": {
+        "name": "fas fa-comments-dollar",
+        "backgroundColor": "#ff7700",
+        "color": "#ffffff"
+      }
+    }
+  }
+}

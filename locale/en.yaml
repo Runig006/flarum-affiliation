@@ -1,0 +1,5 @@
+runig006-flarum-affilation:
+  admin:
+    settings:
+      label: Affilation JSON
+      help: The array is in JSON format. The first key has to be the "name", put what ever you want. Then for each object you need 'domain', and params. Params is an array with the key the name of the param, and the value the...well the value of the params
