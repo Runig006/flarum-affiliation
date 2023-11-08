@@ -24,10 +24,8 @@ export default class SettingsPage extends ExtensionPage {
                     text: this.json
                 },
                 onChange: (updatedContent, previousContent, { contentErrors, patchResult }) => {
-                    if(updatedContent.json){
-                        updatedContent = updatedContent.json;
-                    }
-                    this.json = JSON.stringify(updatedContent).replace(/\\n/g, '');
+                    updatedContent = updatedContent.text ? JSON.parse(updatedContent.text) : updatedContent.json;
+                    this.json = JSON.stringify(updatedContent);
                 }
             }
         })

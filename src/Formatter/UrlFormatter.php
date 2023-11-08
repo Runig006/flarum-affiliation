@@ -23,7 +23,14 @@ class UrlFormatter
     public function checkUrl($url)
     {
         $parse = parse_url($url);
-        if(substr($parse['path'], -1) == '/') {
+        if (
+            isset($parse['path']) == false ||
+            isset($parse['host']) == false
+        ) {
+            return $url;
+        }
+        
+        if (substr($parse['path'], -1) == '/') {
             $parse['path'] = substr($parse['path'], 0, -1);
         }
         foreach ($this->config as $c) {
