@@ -13,6 +13,7 @@ namespace Runig006\FlarumAffiliation\Providers;
 
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Runig006\FlarumAffiliation\Formatter\EmbedFormatter;
 use Runig006\FlarumAffiliation\Formatter\UrlFormatter;
 
 class FormatterProvider extends AbstractServiceProvider
@@ -23,9 +24,20 @@ class FormatterProvider extends AbstractServiceProvider
             $settings = resolve(SettingsRepositoryInterface::class);
             $json = $settings->get('runig006-flarum-affilation.json', "{}");
             $json = json_decode($json, true);
+    
 
             $formatter = new UrlFormatter();
             $formatter->config = $json ?? [];
+            return $formatter;
+        });
+        $this->container->singleton(EmbedFormatter::class, function () {
+            $settings = resolve(SettingsRepositoryInterface::class);
+            $json = $settings->get('runig006-flarum-affilation.json', "{}");
+            $json = json_decode($json, true);
+    
+            $formatter = new EmbedFormatter();
+            $formatter->config = $json ?? [];
+            $formatter->loadAmazon();
             return $formatter;
         });
     }

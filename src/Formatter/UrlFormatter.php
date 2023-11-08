@@ -23,8 +23,11 @@ class UrlFormatter
     public function checkUrl($url)
     {
         $parse = parse_url($url);
+        if(substr($parse['path'], -1) == '/') {
+            $parse['path'] = substr($parse['path'], 0, -1);
+        }
         foreach ($this->config as $c) {
-            if (strpos($parse['host'], $c['domain']) >= 0) {
+            if (strpos($parse['host'], $c['domain']) !== false) {
                 parse_str($parse['query'], $query);
                 foreach ($c['params'] as $n => $v) {
                     $query[$n] = $v;
@@ -51,15 +54,4 @@ class UrlFormatter
             (isset($parts['query']) ? "?{$parts['query']}" : '') .
             (isset($parts['fragment']) ? "#{$parts['fragment']}" : '');
     }
-
-    /*
-            return [
-            'fanatical' => [
-                'domain' => 'fanatical.com',
-                'params' => [
-                    'ref' => 'comuesp',
-                ]
-            ]
-        ];
-        */
 }
