@@ -29,13 +29,13 @@ class UrlFormatter
         ) {
             return $url;
         }
-        
+
         if (substr($parse['path'], -1) == '/') {
             $parse['path'] = substr($parse['path'], 0, -1);
         }
         foreach ($this->config as $c) {
             if (strpos($parse['host'], $c['domain']) !== false) {
-                parse_str($parse['query'], $query);
+                $query = isset($parse['query']) ? parse_str($parse['query'], $query) : [];
                 foreach ($c['params'] as $n => $v) {
                     $query[$n] = $v;
                 }
