@@ -35,7 +35,7 @@ class UrlFormatter
         }
         foreach ($this->config as $c) {
             if (strpos($parse['host'], $c['domain']) !== false) {
-                $query = isset($parse['query']) ? parse_str($parse['query'], $query) : [];
+                parse_str($parse['query'] ?? "", $query);
                 foreach ($c['params'] as $n => $v) {
                     $query[$n] = $v;
                 }
